@@ -3,11 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  
-    "homepage": "https://github.com/Radiaidel/radia-idelkadi.git",
-    "scripts": {
-      "predeploy": "npm run build",
-      "deploy": "gh-pages -d dist",
+  "homepage": "https://Radiaidel.github.io/radia-idelkadi",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",

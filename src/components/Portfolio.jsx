@@ -48,7 +48,7 @@ const Portfolio = () => {
         return (
           <div className="text-center p-8">
             <img 
-              src="/api/placeholder/200/200" 
+              src={`${import.meta.env.BASE_URL}profile.jpg`} 
               alt="Radia Idelkadi" 
               className="mx-auto rounded-full w-48 h-48 object-cover mb-4 border-4 border-blue-500"
             />
@@ -93,101 +93,7 @@ const Portfolio = () => {
             </div>
           </div>
         );
-      case 'skills':
-        return (
-          <div className="p-8">
-            <h2 className="text-2xl font-bold mb-4 text-blue-600">Compétences Techniques</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {skills.map((skillGroup, index) => (
-                <div key={index} className="bg-gray-100 p-4 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-2">{skillGroup.category}</h3>
-                  <ul className="space-y-1">
-                    {skillGroup.technologies.map((tech, techIndex) => (
-                      <li key={techIndex} className="bg-blue-50 px-2 py-1 rounded text-sm">
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-      case 'projects':
-        return (
-          <div className="p-8">
-            <h2 className="text-2xl font-bold mb-4 text-blue-600">Projets</h2>
-            <div className="space-y-4">
-              {projects.map((project, index) => (
-                <div key={index} className="bg-gray-100 p-4 rounded-lg">
-                  <h3 className="text-xl font-semibold">{project.name}</h3>
-                  <p className="text-gray-600 mb-2">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span key={techIndex} className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <a 
-                    href={project.githubLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-blue-500 hover:text-blue-700"
-                  >
-                    Voir sur GitHub
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-      case 'experience':
-        return (
-          <div className="p-8">
-            <h2 className="text-2xl font-bold mb-4 text-blue-600">Expériences Professionnelles</h2>
-            <div className="space-y-4">
-              {experiences.map((exp, index) => (
-                <div key={index} className="bg-gray-100 p-4 rounded-lg">
-                  <h3 className="text-xl font-semibold">{exp.company}</h3>
-                  <p className="text-gray-600 mb-2">{exp.period}</p>
-                  <p className="font-medium">{exp.role}</p>
-                  <p>{exp.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-      case 'contact':
-        return (
-          <div className="p-8">
-            <h2 className="text-2xl font-bold mb-4 text-blue-600">Contact</h2>
-            <div className="max-w-md mx-auto">
-              <form className="space-y-4">
-                <input 
-                  type="text" 
-                  placeholder="Nom" 
-                  className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <input 
-                  type="email" 
-                  placeholder="Email" 
-                  className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <textarea 
-                  placeholder="Votre message" 
-                  rows="4" 
-                  className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                ></textarea>
-                <button 
-                  className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300"
-                >
-                  Envoyer
-                </button>
-              </form>
-            </div>
-          </div>
-        );
+      // ... (reste du code inchangé)
       default:
         return null;
     }
