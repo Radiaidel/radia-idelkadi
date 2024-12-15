@@ -68,7 +68,7 @@ function Portfolio() {
       period: 'April-July 2024',
       description:
         'Contributed to the design phase using UML and created mockups with Figma for an orientation website.',
-      logo: 'public/vision-orientation.jpg',
+      logo: `${import.meta.env.BASE_URL}/vision-orientation.jpg`,
       technologies: ['UML', 'Figma'],
     },
     {
@@ -77,7 +77,7 @@ function Portfolio() {
       period: 'April-June 2023',
       description:
         'Designed and developed a crowdfunding website using Laravel.',
-      logo: 'public/valaOrange-logo.png',
+      logo: `${import.meta.env.BASE_URL}/valaOrange-logo.png`,
       technologies: ['Laravel', 'PHP', 'Bootstrap', 'MySQL'],
     },
     {
@@ -86,7 +86,7 @@ function Portfolio() {
       period: 'July-August 2022',
       description:
         'Designed and developed a motorcycle rental website using WordPress.',
-      logo: 'public/valableu-logo.png',
+      logo: `${import.meta.env.BASE_URL}/valableu-logo.png`,
       technologies: ['WordPress', 'Elementor', 'CSS', 'HTML'],
     },
   ];
@@ -97,21 +97,21 @@ function Portfolio() {
       degree: 'Full-stack Java Developer',
       period: '2023-2025 (ongoing)',
       location: 'Safi, Morocco',
-      logo: 'public/youcode-logo.png'
+      logo: `${import.meta.env.BASE_URL}/youcode-logo.png`
     },
     {
       institution: 'Higher School of Technology of Agadir',
       degree: 'University Degree in Computer Engineering (DUT)',
       period: '2021-2023',
       location: 'Agadir, Morocco',
-      logo: 'public/esta-logo.png'
+      logo: `${import.meta.env.BASE_URL}/esta-logo.png`
     },
     {
       institution: 'Al Maarifa High School',
       degree: 'Baccalaureate in Physical Sciences',
       period: '2020-2021',
       location: 'Ait Melloul, Morocco',
-      logo: 'public/almaarifa-logo.png'
+      logo: `${import.meta.env.BASE_URL}/almaarifa-logo.png`
     }
   ];
 
@@ -123,7 +123,7 @@ function Portfolio() {
       identifier: 'CMN-VA-0924 (C#6-VA)',
       skills: ['Virtual Assistance', 'Administrative Support'],
       link: 'https://intranet.alxswe.com/certificates/L2Rs7Gep9Z',
-      logo: 'public/alx-logo.png'
+      logo: `${import.meta.env.BASE_URL}/alx-logo.png`
     }
   ];
   const projects = [
@@ -273,7 +273,7 @@ function Portfolio() {
           <div className="relative group">
             <div className="relative z-10">
               <img
-                src="public/profile.jpg"
+                src={`${import.meta.env.BASE_URL}/profile.jpg`}
                 alt="Radia Idelkadi"
                 className="rounded-lg object-cover w-full h-full  hover:grayscale transition-all"
               />
