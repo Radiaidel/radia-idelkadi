@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  FaReact, FaJava, FaGitAlt, FaGithub, FaFigma 
+  FaReact, FaJava, FaGitAlt, FaGithub, FaFigma , FaAngular 
 } from "react-icons/fa";
 import { 
   DiJavascript 
@@ -18,7 +18,7 @@ import {
   SiSpringboot, SiJira, SiJunit5, SiApachemaven, SiUml, 
   SiSpringsecurity, SiSwagger, SiPostman, SiSpring, 
   SiPostgresql, SiMysql, SiMariadbfoundation, SiMongodb, 
-  SiHibernate, SiJenkins 
+  SiHibernate, SiJenkins ,SiGithubactions 
 } from "react-icons/si";
 import { BsFiletypeJava } from "react-icons/bs";
 import { GrDocker } from "react-icons/gr";
@@ -27,6 +27,7 @@ export function SkillsSection() {
   const skillCategories = {
     'Front-end': [
       { name: 'React.js', icon: <FaReact /> },
+      { name: 'Angular', icon: <FaAngular /> },
       { name: 'JavaScript (ES6+)', icon: <DiJavascript /> },
       { name: 'HTML5', icon: <TiHtml5 /> },
       { name: 'CSS3', icon: <IoLogoCss3 /> },
@@ -63,7 +64,8 @@ export function SkillsSection() {
     ],
     'devOps': [
       { name: 'Docker', icon: <GrDocker /> },
-      { name: 'Jenkins', icon: <SiJenkins /> }
+      { name: 'Jenkins', icon: <SiJenkins /> },
+      { name: 'Github actions', icon: <SiGithubactions /> }
     ],
 
 
@@ -73,6 +75,7 @@ export function SkillsSection() {
   function getIconColor(skillName) {
     const colors = {
       'React.js': '#61dafb',
+      'Angular': '#dd0031',
       'JavaScript (ES6+)': '#f7df1e',
       'HTML5': '#e34f26',
       'CSS3': '#1572b6',
@@ -89,7 +92,7 @@ export function SkillsSection() {
       'MongoDB': '#47a248',
       'Hibernate': '#59666c',
       'Git': '#f05032',
-      'GitHub': '#181717',
+      'GitHub': '#fffff',
       'Postman': '#ff6c37',
       'Swagger': '#85ea2d',
       'JIRA': '#0052cc',
@@ -98,6 +101,7 @@ export function SkillsSection() {
       'Figma': '#f24e1e',
       'Docker': '#2496ed',
       'Jenkins': '#d33833',
+      'Github actions': '#1384ed',
       'JUnit': '#25a162',
       'Mockito': '#b4b4b4',
       'JaCoCo': '#ffaf00'
