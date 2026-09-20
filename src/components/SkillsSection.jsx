@@ -1,147 +1,170 @@
-import React from 'react';
-import { 
-  FaReact, FaJava, FaGitAlt, FaGithub, FaFigma , FaAngular 
-} from "react-icons/fa";
-import { 
-  DiJavascript 
-} from "react-icons/di";
-import { 
-  TiHtml5 
-} from "react-icons/ti";
-import { 
-  IoLogoCss3 
-} from "react-icons/io5";
-import { 
-  RiTailwindCssFill, RiBootstrapFill 
-} from "react-icons/ri";
-import { 
-  SiSpringboot, SiJira, SiJunit5, SiApachemaven, SiUml, 
-  SiSpringsecurity, SiSwagger, SiPostman, SiSpring, 
-  SiPostgresql, SiMysql, SiMariadbfoundation, SiMongodb, 
-  SiHibernate, SiJenkins ,SiGithubactions 
-} from "react-icons/si";
-import { BsFiletypeJava } from "react-icons/bs";
-import { GrDocker } from "react-icons/gr";
+import React, { useState } from 'react';
+import { FaJava, FaAngular, FaReact, FaGitAlt, FaDocker, FaLinux, FaHtml5, FaCss3Alt, FaDatabase, FaFileCode, FaPhp } from 'react-icons/fa';
+import { SiSpring, SiHibernate, SiPostgresql, SiMysql, SiMongodb, SiJavascript, SiTypescript, SiTailwindcss, SiJira, SiGithub, SiPostman, SiIntellijidea, SiSwagger, SiXml, SiLaravel } from 'react-icons/si';
+
+const CATS = [
+  {
+    id: 'tech-func', label: 'Technical-Functional',
+    color: '#7c3aed', glow: 'rgba(124,58,237,0.18)', border: 'rgba(124,58,237,0.3)',
+    skills: [
+      { icon: <FaFileCode />,  name: 'Gap Analysis', color: '#a78bfa' },
+      { icon: <FaFileCode />,  name: 'DO Specs',     color: '#c084fc' },
+      { icon: <FaFileCode />,  name: 'System Config',color: '#818cf8' },
+      { icon: <FaFileCode />,  name: 'Client Support',color: '#38bdf8' },
+      { icon: <FaFileCode />,  name: 'Facilitation', color: '#34d399' },
+      { icon: <FaFileCode />,  name: 'Evolutions',   color: '#fbbf24' },
+    ],
+  },
+  {
+    id: 'edi-xml', label: 'Electronic Invoicing & EDI',
+    color: '#06b6d4', glow: 'rgba(6,182,212,0.15)', border: 'rgba(6,182,212,0.3)',
+    skills: [
+      { icon: <SiXml />,       name: 'XML / XSLT',  color: '#67e8f9' },
+      { icon: <FaFileCode />,  name: 'EDI Flows',   color: '#38bdf8' },
+      { icon: <FaFileCode />,  name: 'UBL 1.6 / 2.1',color: '#818cf8' },
+      { icon: <FaFileCode />,  name: 'EN 16931',    color: '#f472b6' },
+      { icon: <FaFileCode />,  name: 'E-Invoicing', color: '#34d399' },
+      { icon: <FaFileCode />,  name: 'Data Control', color: '#fbbf24' },
+    ],
+  },
+  {
+    id: 'backend', label: 'Backend (Java)',
+    color: '#f97316', glow: 'rgba(249,115,22,0.15)', border: 'rgba(249,115,22,0.3)',
+    skills: [
+      { icon: <FaJava />,      name: 'Java 8+',      color: '#f97316' },
+      { icon: <SiSpring />,    name: 'Spring Boot', color: '#86efac' },
+      { icon: <SiSpring />,    name: 'Spring Data', color: '#4ade80' },
+      { icon: <SiSpring />,    name: 'Spring Sec',  color: '#a78bfa' },
+      { icon: <SiHibernate />, name: 'Hibernate',   color: '#c084fc' },
+      { icon: <FaDatabase />,  name: 'REST API',    color: '#38bdf8' },
+      { icon: <FaFileCode />,  name: 'Maven',       color: '#f87171' },
+    ],
+  },
+  {
+    id: 'frontend', label: 'Frontend',
+    color: '#ec4899', glow: 'rgba(236,72,153,0.15)', border: 'rgba(236,72,153,0.3)',
+    skills: [
+      { icon: <FaAngular />,     name: 'Angular',    color: '#f87171' },
+      { icon: <SiTypescript />,  name: 'TypeScript', color: '#60a5fa' },
+      { icon: <SiJavascript />,  name: 'JS (ES6+)',  color: '#fbbf24' },
+      { icon: <FaHtml5 />,       name: 'HTML5/CSS3', color: '#f97316' },
+      { icon: <SiTailwindcss />, name: 'Tailwind',   color: '#67e8f9' },
+      { icon: <FaFileCode />,    name: 'RxJS / NgRx',color: '#c084fc' },
+    ],
+  },
+  {
+    id: 'database', label: 'Databases',
+    color: '#10b981', glow: 'rgba(16,185,129,0.15)', border: 'rgba(16,185,129,0.3)',
+    skills: [
+      { icon: <SiPostgresql />, name: 'PostgreSQL', color: '#60a5fa' },
+      { icon: <SiMysql />,      name: 'MySQL',      color: '#f97316' },
+      { icon: <FaDatabase />,   name: 'SQL Server', color: '#f87171' },
+      { icon: <SiMongodb />,    name: 'MongoDB',    color: '#86efac' },
+      { icon: <FaDatabase />,   name: 'MariaDB/H2', color: '#38bdf8' },
+    ],
+  },
+  {
+    id: 'tools', label: 'Tools, Testing & Methods',
+    color: '#3b82f6', glow: 'rgba(59,130,246,0.15)', border: 'rgba(59,130,246,0.3)',
+    skills: [
+      { icon: <FaGitAlt />,       name: 'Git / GitHub',color: '#f87171' },
+      { icon: <SiJira />,         name: 'JIRA',       color: '#60a5fa' },
+      { icon: <SiPostman />,      name: 'Postman',    color: '#f97316' },
+      { icon: <SiSwagger />,      name: 'Swagger',    color: '#86efac' },
+      { icon: <FaDocker />,       name: 'Docker',     color: '#67e8f9' },
+      { icon: <FaFileCode />,     name: 'UML / Figma',color: '#c084fc' },
+      { icon: <FaFileCode />,     name: 'JUnit/Mockito',color: '#34d399' },
+    ],
+  },
+];
 
 export function SkillsSection() {
-  const skillCategories = {
-    'Front-end': [
-      { name: 'React.js', icon: <FaReact /> },
-      { name: 'Angular', icon: <FaAngular /> },
-      { name: 'JavaScript (ES6+)', icon: <DiJavascript /> },
-      { name: 'HTML5', icon: <TiHtml5 /> },
-      { name: 'CSS3', icon: <IoLogoCss3 /> },
-      { name: 'Tailwind CSS', icon: <RiTailwindCssFill /> },
-      { name: 'Bootstrap', icon: <RiBootstrapFill /> }
-    ],
-    'Back-end (Java/Spring)': [
-      { name: 'Java 8+', icon: <FaJava /> },
-      { name: 'Spring Boot', icon: <SiSpringboot /> },
-      { name: 'Spring Data JPA', icon: <SiSpring /> },
-      { name: 'Spring Security', icon: <SiSpringsecurity /> },
-      { name: 'Jakarta EE', icon: <BsFiletypeJava /> }
-    ],
-    'Databases & ORM': [
-      { name: 'PostgreSQL', icon: <SiPostgresql /> },
-      { name: 'MySQL', icon: <SiMysql /> },
-      { name: 'MariaDB', icon: <SiMariadbfoundation /> },
-      { name: 'MongoDB', icon: <SiMongodb /> },
-      { name: 'Hibernate', icon: <SiHibernate /> }
-    ],
-    'projectManagement': [
-      { name: 'JIRA', icon: <SiJira /> },
-      { name: 'Maven', icon: <SiApachemaven /> },
-      { name: 'UML', icon: <SiUml /> },
-      { name: 'Figma', icon: <FaFigma /> }
-    ],
-    'versionControl': [
-      { name: 'Git', icon: <FaGitAlt /> },
-      { name: 'GitHub', icon: <FaGithub /> }
-    ],
-    'apiTools': [
-      { name: 'Postman', icon: <SiPostman /> },
-      { name: 'Swagger', icon: <SiSwagger /> }
-    ],
-    'devOps': [
-      { name: 'Docker', icon: <GrDocker /> },
-      { name: 'Jenkins', icon: <SiJenkins /> },
-      { name: 'Github actions', icon: <SiGithubactions /> }
-    ],
-
-
-  };
-
-
-  function getIconColor(skillName) {
-    const colors = {
-      'React.js': '#61dafb',
-      'Angular': '#dd0031',
-      'JavaScript (ES6+)': '#f7df1e',
-      'HTML5': '#e34f26',
-      'CSS3': '#1572b6',
-      'Tailwind CSS': '#06b6d4',
-      'Bootstrap': '#7952b3',
-      'Java 8+': '#f89820',
-      'Spring Boot': '#6db33f',
-      'Spring Data JPA': '#6db33f',
-      'Spring Security': '#6db33f',
-      'Jakarta EE': '#007396',
-      'PostgreSQL': '#336791',
-      'MySQL': '#4479a1',
-      'MariaDB': '#ffffff',
-      'MongoDB': '#47a248',
-      'Hibernate': '#59666c',
-      'Git': '#f05032',
-      'GitHub': '#fffff',
-      'Postman': '#ff6c37',
-      'Swagger': '#85ea2d',
-      'JIRA': '#0052cc',
-      'Maven': '#c71a36',
-      'UML': '#e0e0e0',
-      'Figma': '#f24e1e',
-      'Docker': '#2496ed',
-      'Jenkins': '#d33833',
-      'Github actions': '#1384ed',
-      'JUnit': '#25a162',
-      'Mockito': '#b4b4b4',
-      'JaCoCo': '#ffaf00'
-    };
-
-    return colors[skillName] || '#64ffda'; // Default to green if not found
-  }
-
+  const [active, setActive] = useState(null);
+  const displayed = active ? CATS.filter(c => c.id === active) : CATS;
 
   return (
-    <section id="skills" className="py-20 bg-[#0a192f]">
-      <div className="container mx-auto px-4 text-start">
-        <h2 className="text-3xl font-bold text-[#ccd6f6] mb-12">
-          <span className="text-[#64ffda] font-mono mr-2">02.</span>
-          Technical Skills
-        </h2>
+    <section id="skills" style={{ padding: '100px 28px', position: 'relative' }}>
+      <div aria-hidden="true" style={{ position:'absolute', right:-100, top:'10%', width:400, height:400, borderRadius:'50%', background:'radial-gradient(circle,rgba(124,58,237,0.1) 0%,transparent 70%)', filter:'blur(80px)', pointerEvents:'none' }} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.entries(skillCategories).map(([category, skills]) => (
-            <div
-              key={category}
-              className="bg-[#112240] rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+
+        {/* Header */}
+        <div className="reveal" style={{ marginBottom: 60 }}>
+          <p className="section-number">02 — SKILLS</p>
+          <h2 className="section-title">
+            Technical{' '}
+            <span style={{ background:'var(--grad-primary)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>
+              Expertise
+            </span>
+          </h2>
+          <div className="section-divider" />
+          <p style={{ color:'var(--text-muted)', marginTop:14, fontSize:'0.98rem', maxWidth:560 }}>
+            A blend of technical depth and functional breadth — from XML pipelines to modern web frameworks.
+          </p>
+        </div>
+
+        {/* Filter Tabs */}
+        <div className="reveal" style={{ display:'flex', flexWrap:'wrap', gap:10, marginBottom:44 }}>
+          {[{ id: null, label: 'All Skills' }, ...CATS.map(c => ({ id: c.id, label: c.label, color: c.color, border: c.border }))].map(tab => (
+            <button
+              key={tab.id ?? 'all'}
+              onClick={() => setActive(active === tab.id ? (tab.id ? null : null) : tab.id)}
+              style={{
+                padding:'8px 20px', borderRadius:10, cursor:'pointer',
+                fontFamily:"'JetBrains Mono',monospace", fontSize:'0.8rem', fontWeight:600,
+                letterSpacing:'0.04em', transition:'all 0.2s ease',
+                border: `1px solid ${active === tab.id ? (tab.border || 'rgba(124,58,237,0.45)') : 'var(--border)'}`,
+                background: active === tab.id ? `${tab.color || '#7c3aed'}18` : 'var(--bg-glass)',
+                color: active === tab.id ? (tab.color || '#a78bfa') : 'var(--text-muted)',
+              }}
             >
-              <h3 className="text-xl text-center font-semibold text-[#64ffda] mb-4">{category}</h3>
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
-              <ul className="grid grid-cols-3 gap-4 justify-items-center">
-                {skills.map((skill) => (
-                  <li key={skill.name} className="flex flex-col items-center">
-                    <div
-                      className="text-4xl mb-2"
-                      style={{ color: getIconColor(skill.name) }}
-                    >
-                      {skill.icon}
-                    </div>
-                    <p className="text-sm text-[#ccd6f6]">{skill.name}</p>
-                  </li>
+        {/* Cards Grid */}
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(320px,1fr))', gap:22 }}>
+          {displayed.map((cat, ci) => (
+            <div key={cat.id} className="reveal glass-card" data-delay={ci * 80} style={{ padding: 26 }}>
+              {/* Category header */}
+              <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:22 }}>
+                <div style={{ width:34, height:34, borderRadius:10, background:`${cat.color}1a`, border:`1px solid ${cat.border}`, display:'flex', alignItems:'center', justifyContent:'center' }}>
+                  <div style={{ width:11, height:11, borderRadius:'50%', background:cat.color, boxShadow:`0 0 10px ${cat.color}80` }} />
+                </div>
+                <h3 style={{ fontSize:'0.98rem', fontWeight:700, color:cat.color, fontFamily:"'Space Grotesk',sans-serif" }}>
+                  {cat.label}
+                </h3>
+                <span style={{ marginLeft:'auto', fontSize:'0.68rem', fontFamily:"'JetBrains Mono',monospace", color:'var(--text-faint)', padding:'2px 8px', borderRadius:999, background:'var(--bg-glass)', border:'1px solid var(--border)' }}>
+                  {cat.skills.length} skills
+                </span>
+              </div>
+
+              {/* Icon grid */}
+              <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(76px,1fr))', gap:9 }}>
+                {cat.skills.map(({ icon, name, color }) => (
+                  <div key={name} className="skill-icon-card" title={name}>
+                    <span className="icon-wrap" style={{ color, fontSize:'2.1rem' }}>{icon}</span>
+                    <span style={{ fontSize:'0.65rem', color:'var(--text-muted)', fontFamily:"'JetBrains Mono',monospace", lineHeight:1.3, textAlign:'center' }}>
+                      {name}
+                    </span>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
+        </div>
+
+        {/* Extra knowledge tags */}
+        <div className="reveal" data-delay="300" style={{ marginTop: 44 }}>
+          <p style={{ fontSize:'0.7rem', fontFamily:"'JetBrains Mono',monospace", color:'var(--text-faint)', marginBottom:14, textTransform:'uppercase', letterSpacing:'0.12em' }}>
+            Additional Knowledge
+          </p>
+          <div style={{ display:'flex', flexWrap:'wrap', gap:8 }}>
+            {['UML / MERISE','Clean Code','SOLID Principles','Design Patterns','Scrum / Agile','Git Flow','MVC Architecture','EN 16931 Standard','EDI Workflows','API Documentation','Microservices Concepts'].map(tag => (
+              <span key={tag} className="tech-tag">{tag}</span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
